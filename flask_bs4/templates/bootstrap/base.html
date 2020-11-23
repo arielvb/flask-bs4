@@ -12,8 +12,12 @@
     {%- endblock metas %}
 
     {%- block styles %}
+    {%if config.get('BOOTSTRAP_BOOTSWATCH', None): %}
+    <link href="{{bootstrap_find_resource('bootstrap.css', cdn='bootswatch')}}" rel="stylesheet">
+    {% else %}
     <!-- Bootstrap -->
     <link href="{{ bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap') }}" rel="stylesheet">
+    {% endif %}
     {%- endblock styles %}
     {% block favicon %}
     <link rel="icon" type="image/ico" href="/static/favicon.ico">

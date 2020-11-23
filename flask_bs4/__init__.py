@@ -186,6 +186,11 @@ class Bootstrap(object):
             WebCDN('//cdnjs.cloudflare.com/ajax/libs/respond.js/%s/' %
                    RESPONDJS_VERSION), local)
 
+        bootswatch_cdn = '//cdnjs.cloudflare.com/ajax/libs/bootswatch/%s/%s/'
+        bootswatch = lwrap(
+            WebCDN(bootswatch_cdn %
+                (BOOTSTRAP_VERSION, app.config.get('BOOTSTRAP_BOOTSWATCH', 'cerulean'))))
+
         app.extensions['bootstrap'] = {
             'cdns': {
                 'local': local,
@@ -194,7 +199,8 @@ class Bootstrap(object):
                 'jquery': jquery,
                 'html5shiv': html5shiv,
                 'respond.js': respondjs,
-                'popper.js': popperjs
+                'popper.js': popperjs,
+                'bootswatch': bootswatch,
             },
         }
 
